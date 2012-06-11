@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class LocationPage {
     private WebDriver driver; 
-
+   
+    
     public LocationPage(WebDriver driver) {
         this.driver = driver;
 

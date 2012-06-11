@@ -33,7 +33,7 @@ formatter.match({
   "location": "SearchStepDefinitions.prepareHomePage()"
 });
 formatter.result({
-  "duration": 14274731007,
+  "duration": 15292579709,
   "status": "passed"
 });
 formatter.match({
@@ -46,7 +46,7 @@ formatter.match({
   "location": "SearchStepDefinitions.search(String)"
 });
 formatter.result({
-  "duration": 6474874455,
+  "duration": 10312145347,
   "status": "passed"
 });
 formatter.match({
@@ -59,8 +59,7 @@ formatter.match({
   "location": "SearchStepDefinitions.assertTheSearchResult(String)"
 });
 formatter.result({
-  "duration": 2626138047,
+  "duration": 2325249547,
   "status": "passed"
 });
-});
-});
+});});

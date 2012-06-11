@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class SearchResultPage {
     private WebDriver driver; 
-
+   
+    
     public SearchResultPage(WebDriver driver) {
         this.driver = driver;
         if (!driver.getTitle().contains("yr.no")) {

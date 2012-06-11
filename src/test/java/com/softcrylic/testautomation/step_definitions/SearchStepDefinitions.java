@@ -18,6 +18,8 @@ import com.softcrylic.testautomation.pages.HomePage;
 import com.softcrylic.testautomation.pages.LocationPage;
 import com.softcrylic.testautomation.pages.SearchResultPage;
 
+import org.junit.Assert;
+
 public class SearchStepDefinitions {
     private WebDriver driver;
     private HomePage home;
@@ -25,16 +27,25 @@ public class SearchStepDefinitions {
 
     @Before
     public void prepare() throws MalformedURLException {
-    	System.out.println("Count is:  @prepare" + ++count);
-    	String url = "";
-    	url = "http://localhost:4444/wd/hub";
-    	System.out.println("Running at: "+url);
-    	 DesiredCapabilities capabillities = DesiredCapabilities.chrome(); 
+    	 //For local machine
+    	 String url = "http://localhost:4444/wd/hub";
+    	 //For Saucelabs
+    	 //replace above URL ("http://localhost:4444/wd/hub") with Saucelabs URL
+    	 System.out.println("Running at: "+url);
+    	 //Switch browsers
+    	 //For chrome
+    	 DesiredCapabilities capabillities = DesiredCapabilities.chrome();
+    	 //For firefox
+    	 //DesiredCapabilities capabillities = DesiredCapabilities.firefox();
     	 //if(url.contains("saucelabs")) 
-        // capabillities.setCapability("version", "11");
-    	// else
-    		// capabillities.setCapability("version", "12.0");
+         //capabillities.setCapability("version", "11");
+    	 //else
+    	 //capabillities.setCapability("version", "12.0"); //Change the browser version here if running on local machine
+    	 //For Windows XP
          capabillities.setCapability("platform", Platform.XP);
+         //For MAC
+         //capabillities.setCapability("platform", Platform.MAC);
+         
          capabillities.setCapability("name", "Running via Jenkins. Testing on Sauce");
          capabillities.setCapability("record-video", false);
 
@@ -42,10 +53,6 @@ public class SearchStepDefinitions {
         		 new URL(url),
             capabillities);
          driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    	//DesiredCapabilities cap = DesiredCapabilities.firefox();
-    	//cap.setCapability("version", "12.0");
-    	//System.out.println("Changes reverted!");
-        //driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
     }
 
     @After
@@ -64,7 +71,6 @@ public class SearchStepDefinitions {
     }
 
     @When("^I search for (.*)$")
-    //@When("^I search for nothing$") 
     public void search(String location) {
     	System.out.println("Count is: @search " + ++count);
         searchResult = home.searchFor(location);
@@ -74,10 +80,8 @@ public class SearchStepDefinitions {
     public void assertTheSearchResult(String locationName) {
     	System.out.println("Count is: @assertTheSearchResult " + ++count);
         LocationPage location = searchResult.clickOnTopSearchResultLink();
-        @SuppressWarnings("unused")
-		String actualHeadLine = location.getHeadLine();
-
-        //assertTrue(actualHeadLine.contains(locationName));
+        String actualHeadLine = location.getHeadLine();
+        Assert.assertTrue(actualHeadLine.contains(locationName));
     }
     private static int count =0;
 }
